@@ -1,11 +1,11 @@
-
-
 import { ModifyResult, PaginateModel, PaginateResult } from "mongoose";
 import mongoose = require("mongoose");
 import IRead = require("./interfaces/read");
 import IWrite = require("./interfaces/write");
+import { injectable } from "inversify";
 
 
+@injectable()
 class RepositoryBase<T> implements IRead<T>, IWrite<T> {
 
     constructor(private model: PaginateModel<T>) {
@@ -45,7 +45,6 @@ class RepositoryBase<T> implements IRead<T>, IWrite<T> {
     private toObjectId(_id: string): any {
         return mongoose.Types.ObjectId.createFromHexString(_id);
     }
-
 }
 
 export = RepositoryBase;

@@ -9,7 +9,7 @@
     "preserve": "npm run build",
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production node dist/server.js",
-    "serve": "cross-env NODE_ENV=development concurrently \"tsc --watch\" \"nodemon -q dist/server.js\"",
+    "serve": "cross-env NODE_ENV=development concurrently \"rimraf dist && tsc --watch\" \"nodemon -q dist/server.js\"",
     "lint": "eslint . --fix"
   },
   "author": "Ambrose Ariagiegbe",
@@ -25,11 +25,11 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "helmet": "^5.1.0",
+    "inversify": "^6.0.1",
     "mongoose": "^6.3.6",
     "mongoose-paginate-v2": "^1.6.3",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "tsyringe": "^4.7.0"
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.27.1",

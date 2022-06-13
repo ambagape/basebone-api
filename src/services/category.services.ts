@@ -1,14 +1,16 @@
 import { PaginateResult } from "mongoose";
-import { injectable } from "tsyringe";
 import { ICategory } from "../database/categories/category.types";
 import { CategoryRepository } from "../repositories/category.repository";
 import { NotFoundError } from "./errors/not-found.error";
 import { ICategoryService } from "./interfaces/icategory.service";
+import { injectable, inject } from "inversify";
+import { TYPES } from "../di/types";
+
 
 @injectable()
 export class CategoryService implements ICategoryService {
 
-    constructor(private repository: CategoryRepository) {
+    constructor(@inject(TYPES.CategoryRepositoryDefault) private repository: CategoryRepository) {
 
     }
 

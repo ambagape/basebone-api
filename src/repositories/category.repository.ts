@@ -1,11 +1,15 @@
 
-import { CategoryModel } from "../database/categories/category.model";
 import { ICategory } from "../database/categories/category.types";
+import { ICategoryRepository } from "./interfaces/i-category.repository";
 import RepositoryBase from "./repository.base";
+import { inject, injectable } from "inversify";
+import { PaginateModel } from "mongoose";
+import { TYPES } from "../di/types";
 
-export class CategoryRepository extends RepositoryBase<ICategory>{
+@injectable()
+export class CategoryRepository extends RepositoryBase<ICategory>  implements ICategoryRepository{
 
-    constructor() {
-        super(CategoryModel);        
+    constructor(@inject(TYPES.PaginatedCatModel) model: PaginateModel<ICategory>) {
+        super(model);        
     }
 }
