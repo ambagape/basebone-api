@@ -6,6 +6,6 @@ import RepositoryBase from "./repository.base";
 export class CategoryRepository extends RepositoryBase<ICategory>{
 
     constructor() {
-        super(CategoryModel);
+        super(CategoryModel);        
     }
 }

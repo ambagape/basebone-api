@@ -1,12 +1,13 @@
 import { Schema, Types } from "mongoose";
+import paginate from 'mongoose-paginate-v2';
 import { localeSchema } from "../locale/locale.schema";
 import { locksSchema } from "../locks/locks.schema";
 import { mediaSchema } from "../media/media.schema";
 import { settingSchema } from "../setting/setting.schema";
 import { ICategory } from "./category.types";
 
-export const categorySchema = new Schema<ICategory>({
-    id: { type: String, required: true },
+const categorySchema = new Schema<ICategory>({
+    _id: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     media: mediaSchema,
     locale: [localeSchema],
@@ -30,3 +31,7 @@ export const categorySchema = new Schema<ICategory>({
         default: new Date(),
     },
 });
+
+categorySchema.plugin(paginate);
+
+export default categorySchema;

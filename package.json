@@ -2,14 +2,14 @@
   "name": "basebone",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc",
     "preserve": "npm run build",
     "prestart": "npm run build",
-    "start": "cross-env NODE_ENV=production node dist/main.js",
-    "serve": "cross-env NODE_ENV=development concurrently \"tsc --watch\" \"nodemon -q dist/main.js\"",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
+    "serve": "cross-env NODE_ENV=development concurrently \"tsc --watch\" \"nodemon -q dist/server.js\"",
     "lint": "eslint . --fix"
   },
   "author": "Ambrose Ariagiegbe",
@@ -26,6 +26,7 @@
     "express": "^4.18.1",
     "helmet": "^5.1.0",
     "mongoose": "^6.3.6",
+    "mongoose-paginate-v2": "^1.6.3",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {

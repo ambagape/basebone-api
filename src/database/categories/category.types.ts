@@ -1,12 +1,12 @@
-import {  Types } from "mongoose";
+import {  ObjectId, Types } from "mongoose";
 import { ILocale } from "../locale/locale.types";
 import { ILocks } from "../locks/lock.types";
 import { IMedia } from "../media/media.types";
-import { ISetting } from "../setting";
+import { ISetting } from "../setting/setting.types";
 
 
 export interface ICategory{
-    id: string;
+    _id: ObjectId;
     slug: string;    
     media: IMedia;
     locale: Types.DocumentArray<ILocale>;
