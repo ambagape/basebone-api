@@ -1,12 +1,14 @@
 import { PaginateResult } from "mongoose";
+import { injectable } from "tsyringe";
 import { ICategory } from "../database/categories/category.types";
-import RepositoryBase from "../repositories/repository.base";
+import { CategoryRepository } from "../repositories/category.repository";
 import { NotFoundError } from "./errors/not-found.error";
 import { ICategoryService } from "./interfaces/icategory.service";
 
-class CategoryService implements ICategoryService {
+@injectable()
+export class CategoryService implements ICategoryService {
 
-    constructor(private repository: RepositoryBase<ICategory>) {
+    constructor(private repository: CategoryRepository) {
 
     }
 
@@ -16,15 +18,15 @@ class CategoryService implements ICategoryService {
     }
 
     async update(id: string, item: ICategory): Promise<ICategory> {
-        const result = await this.repository.update(id, item, { overwrite: true, new: true });                  
+        const result = await this.repository.update(id, item, { overwrite: true, new: true });
         if (!result.value) {
             throw new NotFoundError("Could not update category");
         }
         return result.value as ICategory;
     }
 
-    async updatePartially(id: string, item: any): Promise<ICategory> {        
-        const result = await this.repository.update(id, item); 
+    async updatePartially(id: string, item: any): Promise<ICategory> {
+        const result = await this.repository.update(id, item);
         if (!result.value) {
             throw new NotFoundError("Could not update category");
         }

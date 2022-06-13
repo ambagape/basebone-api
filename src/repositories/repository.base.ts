@@ -5,6 +5,7 @@ import mongoose = require("mongoose");
 import IRead = require("./interfaces/read");
 import IWrite = require("./interfaces/write");
 
+
 class RepositoryBase<T> implements IRead<T>, IWrite<T> {
 
     constructor(private model: PaginateModel<T>) {
