@@ -6,5 +6,5 @@ export const settingSchema = new Schema<ISetting>({
     excludedDomains: [String],
     excludedCountriesIso: [String],
     ageRating: String
- });
+});
  

@@ -9,7 +9,7 @@ export interface ICategory{
     _id: ObjectId;
     slug: string;    
     media: IMedia;
-    locale: Types.DocumentArray<ILocale>;
+    locale: Types.Array<ILocale>;
     settings: ISetting;
     locks: ILocks;
     parentId?: Types.ObjectId;

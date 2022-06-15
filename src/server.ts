@@ -5,11 +5,16 @@ import dotenv from 'dotenv';
 import handleError from './middleware/error-handler.middleware';
 import "reflect-metadata";
 import Routes from './routes/routes';
+import mongoose from 'mongoose'
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const app: Express = express();
+
+mongoose.connect(`${process.env.DATABASE_URL}`).then(() => { 
+    console.log("Connection to db established") 
+});
 
 app.use(helmet());
 app.use(bodyParser.json());

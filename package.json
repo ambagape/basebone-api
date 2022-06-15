@@ -6,10 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc",
-    "preserve": "npm run build",
+    "dev:build": "rimraf dist && tsc -w",
+    "dev:run": "nodemon dist/server.js",
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production node dist/server.js",
-    "serve": "cross-env NODE_ENV=development concurrently \"rimraf dist && tsc --watch\" \"nodemon -q dist/server.js\"",
+    "dev": "cross-env NODE_ENV=development concurrently npm:dev:*",
     "lint": "eslint . --fix"
   },
   "author": "Ambrose Ariagiegbe",

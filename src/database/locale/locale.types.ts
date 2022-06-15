@@ -10,7 +10,6 @@ export interface ILocale{
     seoSummary: string;
     description: string;
     seoDescription: string;
-    specifySeoValues: boolean;
-    category: Types.ObjectId | ICategory;
+    specifySeoValues: boolean;    
 }
 

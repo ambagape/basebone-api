@@ -1,6 +1,5 @@
 import { Schema, Types } from "mongoose";
 import paginate from 'mongoose-paginate-v2';
-import { localeSchema } from "../locale/locale.schema";
 import { locksSchema } from "../locks/locks.schema";
 import { mediaSchema } from "../media/media.schema";
 import { settingSchema } from "../setting/setting.schema";
@@ -9,15 +8,18 @@ import { ICategory } from "./category.types";
 const categorySchema = new Schema<ICategory>({
     _id: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
-    media: mediaSchema,
-    locale: [localeSchema],
-    settings: settingSchema,
-    locks: locksSchema,
+    media: { type: mediaSchema, required: true },
+    locale: [{type: Types.ObjectId, ref: "Locale",  required: true}],
+    settings: { type:  settingSchema, required: true },
+    locks: { type:  locksSchema, required: true },
     parentId: {type: Types.ObjectId, ref: "Category"},
     ancestorIds: [String],
     product: String,
     path: String,
-    isIndexed: Boolean,
+    isIndexed: {
+        type: Boolean,
+        default: false,
+    },
     publishedAt: {
         type: Date,
         default: new Date(),

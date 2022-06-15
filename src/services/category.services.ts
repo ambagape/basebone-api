@@ -1,10 +1,11 @@
-import { PaginateResult } from "mongoose";
+import { ObjectId, PaginateResult, Schema, Types } from "mongoose";
 import { ICategory } from "../database/categories/category.types";
 import { CategoryRepository } from "../repositories/category.repository";
 import { NotFoundError } from "./errors/not-found.error";
 import { ICategoryService } from "./interfaces/icategory.service";
 import { injectable, inject } from "inversify";
 import { TYPES } from "../di/types";
+import { ILocale } from "../database/locale/locale.types";
 
 
 @injectable()
@@ -12,7 +13,7 @@ export class CategoryService implements ICategoryService {
 
     constructor(@inject(TYPES.CategoryRepositoryDefault) private repository: CategoryRepository) {
 
-    }
+    }   
 
     async create(item: ICategory): Promise<ICategory> {
         const created = await this.repository.create(item);
@@ -41,6 +42,14 @@ export class CategoryService implements ICategoryService {
             throw new NotFoundError('Category does not exist');
         return result;
     }
+
+    async showLocales(id: string): Promise<Types.Array<ILocale>> {
+        const result = await this.repository.findById(id);
+        if (!result)
+            throw new NotFoundError('Category does not exist');
+        return result.locale;
+    }
+
     async getAll(page: number, pageSize: number): Promise<PaginateResult<ICategory>> {
         const result = await this.repository.getAll(page, pageSize);
         return result;

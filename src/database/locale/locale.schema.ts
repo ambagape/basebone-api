@@ -9,6 +9,5 @@ export const localeSchema = new Schema<ILocale>({
     seoSummary: String,
     description: String,
     seoDescription: String,
-    specifySeoValues: Boolean,
-    category: {type: Types.ObjectId, ref: "Category", index: true}
+    specifySeoValues: Boolean    
 });
