@@ -1,7 +1,8 @@
 import { Schema, Types } from "mongoose";
 import { ILocale } from "./locale.types";
+import paginate from 'mongoose-paginate-v2';
 
-export const localeSchema = new Schema<ILocale>({
+const localeSchema = new Schema<ILocale>({
     languageIso: String,
     title: String,
     seoTitle: String,
@@ -9,5 +10,11 @@ export const localeSchema = new Schema<ILocale>({
     seoSummary: String,
     description: String,
     seoDescription: String,
-    specifySeoValues: Boolean    
+    specifySeoValues: {
+        type: Boolean,
+        default: false,
+    }
 });
+
+localeSchema.plugin(paginate);
+export default localeSchema;

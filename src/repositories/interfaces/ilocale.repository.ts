@@ -1,4 +1,4 @@
-import { ILocale } from "../../database/locale/locale.types";
+import { ILocale } from "../../models/locale/locale.types";
 import IRead from "./read";
 import IWrite from "./write";
 

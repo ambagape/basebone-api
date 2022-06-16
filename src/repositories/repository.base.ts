@@ -1,5 +1,4 @@
 import { ModifyResult, PaginateModel, PaginateResult } from "mongoose";
-import mongoose = require("mongoose");
 import IRead = require("./interfaces/read");
 import IWrite = require("./interfaces/write");
 import { injectable } from "inversify";
@@ -8,7 +7,7 @@ import { injectable } from "inversify";
 @injectable()
 class RepositoryBase<T> implements IRead<T>, IWrite<T> {
 
-    constructor(private model: PaginateModel<T>) {
+    constructor(protected model: PaginateModel<T>) {
     }
 
     async create(item: T): Promise<T> {
@@ -28,22 +27,18 @@ class RepositoryBase<T> implements IRead<T>, IWrite<T> {
         return result;
     }
 
-    async update(_id: string, item: any, opts?: any): Promise<ModifyResult<T>> {
-        const result = await this.model.findByIdAndUpdate({ _id: this.toObjectId(_id) }, item, opts);        
+    async update(id: string, item: any, opts?: any): Promise<ModifyResult<T>> {
+        const result = await this.model.findByIdAndUpdate(id, item, opts);        
         return result;
     }   
 
-    async delete(_id: string) {
-        await this.model.remove({ _id: this.toObjectId(_id) });
+    async delete(id: string) {            
+        await this.model.deleteOne({ _id: id });
     }
 
     async findById(_id: string): Promise<T | null> {
         const result = await this.model.findById(_id);
         return result;
-    }
-
-    private toObjectId(_id: string): any {
-        return mongoose.Types.ObjectId.createFromHexString(_id);
     }
 }
 

@@ -4,7 +4,7 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "../di/types";
 import { LocaleRepository } from "../repositories/locale.repository";
 import { ILocaleService } from "./interfaces/ilocale.service";
-import { ILocale } from "../database/locale/locale.types";
+import { ILocale } from "../models/locale/locale.types";
 
 
 @injectable()
@@ -21,24 +21,24 @@ export class LocaleService implements ILocaleService {
 
     async update(id: string, item: ILocale): Promise<ILocale> {
         const result = await this.repository.update(id, item, { overwrite: true, new: true });
-        if (!result.value) {
+        if (!result) {
             throw new NotFoundError("Could not update locale");
         }
-        return result.value as ILocale;
+        return result as unknown as ILocale;
     }
 
     async updatePartially(id: string, item: any): Promise<ILocale> {
         const result = await this.repository.update(id, item);
-        if (!result.value) {
-            throw new NotFoundError("Could not update category");
+        if (!result) {
+            throw new NotFoundError("Could not update locale");
         }
-        return result.value as ILocale;
+        return result as unknown as ILocale;
     }
 
     async show(id: string): Promise<ILocale> {
         const result = await this.repository.findById(id);
         if (!result)
-            throw new NotFoundError('Category does not exist');
+            throw new NotFoundError('locale does not exist');
         return result;
     }
     async getAll(page: number, pageSize: number): Promise<PaginateResult<ILocale>> {

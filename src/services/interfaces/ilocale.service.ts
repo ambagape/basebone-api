@@ -1,5 +1,5 @@
 import { PaginateResult } from "mongoose";
-import { ILocale } from "../../database/locale/locale.types";
+import { ILocale } from "../../models/locale/locale.types";
 
 export interface ILocaleService {
     create(item: ILocale): Promise<ILocale>    

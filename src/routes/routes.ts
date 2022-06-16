@@ -9,15 +9,15 @@ class Routes {
         router.get("/categories/:id", CategoryController.show);
         router.post("/categories", CategoryController.create);
         router.get("/categories", CategoryController.showAll);
-        router.get("/categories/:id/locales", CategoryController.showAll);
-        router.delete("/categories", CategoryController.delete);
+        router.get("/categories/:id/locales", CategoryController.getLocales);
+        router.delete("/categories/:id", CategoryController.delete);
         router.put("/categories/:id", CategoryController.update);
         router.patch("/categories/:id", CategoryController.updatePartially);
 
         router.get("/locales/:id", LocaleController.show);
         router.post("/locales", LocaleController.create);
         router.get("/locales", LocaleController.showAll);
-        router.delete("/locales", LocaleController.delete);
+        router.delete("/locales/:id", LocaleController.delete);
         router.put("/locales/:id", LocaleController.update);
         router.patch("/locales/:id", LocaleController.updatePartially);
 

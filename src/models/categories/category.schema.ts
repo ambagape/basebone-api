@@ -6,7 +6,6 @@ import { settingSchema } from "../setting/setting.schema";
 import { ICategory } from "./category.types";
 
 const categorySchema = new Schema<ICategory>({
-    _id: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     media: { type: mediaSchema, required: true },
     locale: [{type: Types.ObjectId, ref: "Locale",  required: true}],

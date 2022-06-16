@@ -1,6 +1,6 @@
 import { PaginateResult } from "mongoose";
-import { ICategory } from "../../database/categories/category.types";
-import { ILocale } from "../../database/locale/locale.types";
+import { ICategory } from "../../models/categories/category.types";
+import { ILocale } from "../../models/locale/locale.types";
 
 export interface ICategoryService {
     create(item: ICategory): Promise<ICategory>    

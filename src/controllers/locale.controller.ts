@@ -1,5 +1,5 @@
 import express = require("express");
-import { ILocale } from "../database/locale/locale.types";
+import { ILocale } from "../models/locale/locale.types";
 import { container } from "../di/inversify.config";
 import { TYPES } from "../di/types";
 import { ILocaleService } from "../services/interfaces/ilocale.service";
