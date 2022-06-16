@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "build": "rimraf dist && tsc",
     "dev:build": "rimraf dist && tsc -w",
     "dev:run": "nodemon dist/server.js",
