@@ -8,8 +8,8 @@ function handleError(
     res: Response,
     next: NextFunction
 ) {
-
-    if (err instanceof NotFoundError) {
+    console.log(err);
+    if (err instanceof NotFoundError) {        
         res.status(404).send(err.message);
     } else if (err instanceof FailedUpdateError){
         res.status(400).send(err.message);
